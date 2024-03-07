@@ -75,6 +75,14 @@ class Main {
         // there's a tool to convert Json values into "normal" objects and arrays
         var value = hxjsonast.Tools.getValue(myJson);
         trace(Std.is(value, Array)); // true
+
+        //Duplicate keys are detected and not allowed (ECMAScript JSON.parse doesn't detect)
+        var json = hxjsonast.Parser.parse('{"a":1,"a":2}', "bad"); //throws
+
+        //Option to disable (for parsing non-conforming JSON e. g. FreeSwitch)
+        var parser=new hxjsonast.Parser();
+        parser.allowDuplicateKeys=true;
+        trace(parser.doParse());//allowing parse;
     }
 }
 ```

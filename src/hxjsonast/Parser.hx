@@ -27,7 +27,7 @@ class Parser {
         this.pos = 0;
     }
 
-    function doParse():Json {
+    public function doParse():Json {
         var result = parseRec();
         var c;
         while (!StringTools.isEof(c = nextChar())) {
